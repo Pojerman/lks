@@ -1,0 +1,72 @@
+<header class="header">
+	<div class="header-container__block">
+		<div class="block-logo">
+			<a href="#" class="block-link">
+				<img src="https://lks.volgatech.net/Images/logo.png" alt="logo">
+			</a>
+		</div>
+		<div class="block-name">
+			<span class="block-name__std">личный кабинет студента</span>
+			<span class="block-name__uni">ПОВОЛЖСКОГО ГОСУДАРСТВЕННОГО ТЕХНОЛОГИЧЕСКОГО УНИВЕРСИТЕТА</span>
+			<span class="block-name__hidden">личный кабинет <br> студента ПГТУ</span>
+		</div>
+		<button class="btn-click__hamburger" (click)="burger()">
+			<span class="hamburger-block glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+		</button>
+	</div>
+</header>
+<div class="wrapper" (click)="close()">
+	<div class="blocks">
+		<div class="block-left" [ngClass]="{'active': activeStatus==1}">
+			<div class="block-left__img">
+				<div class="img" style="background-image: url('{{ imgUrl }}')"></div>
+			</div>
+			<div class="block-left__name flist">
+				{{ aboutStudent.lastName + " " + aboutStudent.firstName + " " + aboutStudent.middleName }}
+			</div>
+			<ul class="block-left__list" [ngClass]="{'active': activeStatus==1}">
+				<li class="list-item">
+					<a href="lks">Моя страница</a>
+				</li>
+				<li class="list-item">
+					<a href="table">Мое расписание занятий</a>
+				</li>
+				<li class="list-item">
+					<a href="../" (click)="logout()">Выход</a>
+				</li>
+			</ul>
+		</div>
+		<div class="block-body">
+			<div class="block-body__about">
+				<dl class="about">
+					<h1 class="about-header">
+						Сведения обо мне
+					</h1>
+					<dt>ФИО</dt>
+					<dd class="fio">{{ aboutStudent.lastName + " " + aboutStudent.firstName + " " + aboutStudent.middleName }}</dd>
+					<dt>Номер зачетной книжки</dt>
+					<dd class="studentNumber">{{ aboutStudent.studentNumber }}</dd>
+					<dt>Факультет (институт)</dt>
+					<dd class="facultyName">{{ aboutStudent.facultyName }}</dd>
+					<dt>Направление (специальность)</dt>
+					<dd class="standardName">{{ aboutStudent.standardName }}</dd>
+					<dt>Профиль</dt>
+					<dd class="specializationName">{{"(" + aboutStudent.specializationShifr + ")" + " " + " " + aboutStudent.specializationName}}</dd>
+					<dt>Курс</dt>
+					<dd class="courseNum">{{ aboutStudent.courseNum + " курс" }}</dd>
+					<dt>Группа</dt>
+					<dd class="groupName">{{ aboutStudent.groupName }}</dd>
+					<dt>Академический статус</dt>
+					<dd class="academicStateName">{{ aboutStudent.academicStateName }}</dd>
+					<dt>Лицевой счет (код студента)</dt>
+					<dd class=""></dd>
+					<dt>Электронная почта</dt>
+					<dd class="emailAddr">{{ aboutStudent.emails[0].emailAddr }}</dd>
+				</dl>
+				<div class="block-body__img">
+					<div class="img" style="background-image: url('{{ imgUrl }}')"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

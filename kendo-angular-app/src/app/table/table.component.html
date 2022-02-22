@@ -1,0 +1,81 @@
+<header class="header">
+	<div class="header-container__block">
+		<div class="block-logo">
+			<a href="#" class="block-link">
+				<img src="https://lks.volgatech.net/Images/logo.png" alt="logo">
+			</a>
+		</div>
+		<div class="block-name">
+			<span class="block-name__std">личный кабинет студента</span>
+			<span class="block-name__uni">ПОВОЛЖСКОГО ГОСУДАРСТВЕННОГО ТЕХНОЛОГИЧЕСКОГО УНИВЕРСИТЕТА</span>
+			<span class="block-name__hidden">личный кабинет <br> студента ПГТУ</span>
+		</div>
+		<button class="btn-click__hamburger" (click)="burger()">
+			<span class="hamburger-block glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+		</button>
+	</div>
+	<div class="wrapper" (click)="close()">
+		<div class="blocks">
+			<div class="block-left" [ngClass]="{'active': activeStatus==1}">
+				<div class="block-left__img">
+					<div class="img" style="background-image: url('{{ imgUrl }}')"></div>
+				</div>
+				<div class="block-left__name flist">
+					{{ aboutStudent.lastName + " " + aboutStudent.firstName + " " + aboutStudent.middleName }}
+				</div>
+				<ul class="block-left__list">
+					<li class="list-item">
+						<a href="lks">Моя страница</a>
+					</li>
+					<li class="list-item">
+						<a href="table">Мое расписание занятий</a>
+					</li>
+					<li class="list-item">
+						<a href="../" (click)="logout()">Выход</a>
+					</li>
+				</ul>
+			</div>
+			<div class="block-table">
+				<div class="block-table__content">
+					<form #form="ngForm">
+						<label>
+							 Выберите неделю:
+							 <kendo-datepicker
+								  #birthdate
+								  name="birthDate"
+								  [(ngModel)]="user.birthDate"
+								  (valueChange)="handleChange($event)"
+							 ></kendo-datepicker>
+						</label>
+				  </form>
+					<div class="content-calendar__attention">
+						<p class="attention-txt">Внимание! Отображается расписание&nbsp;<span
+								class="blue-week">синей</span><span
+								class="red-week">красной</span>&nbsp;недели.</p>
+						<p class="attention-txt">Внимание! Потоковые лекции отмечены <span
+								class="color">&nbsp;цветом&nbsp;</span> и проводятся дистанционно.</p>
+					</div>
+					<kendo-grid [data]="gridData">
+						<kendo-grid-column field="EmptyFirst" title="" 
+						[width]="27"></kendo-grid-column>
+						<kendo-grid-column field="LessonsNumber" title="№" 
+						[width]="45"> </kendo-grid-column>
+						<kendo-grid-column field="Time" title="Время" 
+						[width]="160"
+						> </kendo-grid-column>
+						<kendo-grid-column field="TypeLesson" title="Тип"
+						[width]="50"> </kendo-grid-column>
+						<kendo-grid-column field="LessonName" title="Дисциплина"
+						[width]="600"> </kendo-grid-column>
+						<kendo-grid-column field="Teacher" title="Преподаватель"
+						[width]="250">
+						</kendo-grid-column>
+						<kendo-grid-column field="Room" title="Ауд."
+						[width]="50"> </kendo-grid-column>
+						<kendo-grid-column field="EmptySecond" title="" [width]="27"></kendo-grid-column>
+					 </kendo-grid>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
